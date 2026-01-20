@@ -1,7 +1,8 @@
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
 import { Button } from "@/components/ui/button"
-import { CompassIcon, HomeIcon, SparkleIcon } from "lucide-react"
+import { CompassIcon, HomeIcon, LoaderIcon, SparkleIcon } from "lucide-react"
 import Link from "next/link"
+import { Suspense } from "react";
 
 
 const Header = () => {
@@ -36,6 +37,7 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-3">
+            <Suspense fallback={<div> <LoaderIcon className="size-4 animate-spin" /> </div>}>
             <SignedOut>
               <SignInButton mode="modal" />
               <SignUpButton mode="modal">
@@ -51,6 +53,7 @@ const Header = () => {
               </Button>
               <UserButton />
             </SignedIn>
+            </Suspense>
           </div>
         </div>
       </div>

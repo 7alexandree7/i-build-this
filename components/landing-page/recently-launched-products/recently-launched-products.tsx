@@ -1,34 +1,13 @@
+"use cache";
+
 import EmptyState from "@/components/common/empty-state/empty-state"
 import SectionHeader from "@/components/common/section-header/section-header"
 import ProductsCard from "@/components/products/Products-card/Products-card"
+import { getRecentlyLaunchedProducts } from "@/lib/products/product-select"
 import { CalendarIcon, RocketIcon } from "lucide-react"
 
-const recentlyLaunchedProducts = [
-    {
-        id: 1,
-        name: "unfast ayo",
-        description: "example description 1",
-        tags: ["SAS", "Pricing", "Global"],
-        votes: 615,
-        isFeatured: true
-    },
-    {
-        id: 2,
-        name: "hyper un",
-        description: "example description 2",
-        tags: ["Nextjs", "Reactjs", "Ruby"],
-        votes: 190,
-        isFeatured: false
-    },
-    {
-        id: 3,
-        name: "aphelios sigma",
-        description: "example description 3",
-        tags: ["gume", "colletora", "runan"],
-        votes: 450,
-        isFeatured: true
-    },
-]
+const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
+
 
 const RecentlyLaunchedProducts = () => {
     
