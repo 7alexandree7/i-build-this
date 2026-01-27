@@ -1,15 +1,13 @@
-"use cache";
-
 import EmptyState from "@/components/common/empty-state/empty-state"
 import SectionHeader from "@/components/common/section-header/section-header"
 import ProductsCard from "@/components/products/Products-card/Products-card"
 import { getRecentlyLaunchedProducts } from "@/lib/products/product-select"
 import { CalendarIcon, RocketIcon } from "lucide-react"
 
-const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
 
+const RecentlyLaunchedProducts = async () => {
 
-const RecentlyLaunchedProducts = () => {
+    const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
     
     return (
         <section className="py-20">
