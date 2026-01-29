@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { CompassIcon, HomeIcon, LoaderIcon, SparkleIcon } from "lucide-react"
 import Link from "next/link"
 import { Suspense } from "react";
+import CustomUserButton from "../custom-user-bottom/custom-user-bottom";
 
 
 const Header = () => {
@@ -51,7 +52,7 @@ const Header = () => {
                   Submit Project
                 </Link>
               </Button>
-              <UserButton />
+              <CustomUserButton />
             </SignedIn>
             </Suspense>
           </div>

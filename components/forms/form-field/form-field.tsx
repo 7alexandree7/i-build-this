@@ -2,23 +2,8 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { FormFieldProps } from "@/types"
 
-
-interface FormFieldProps {
-    id: string
-    label: string
-    name: string
-    placeholder: string
-    required?: boolean
-    error: string | null
-    helpText?: string
-    textarea?: boolean
-    onChange: (
-        e:
-            | React.ChangeEvent<HTMLInputElement>
-            | React.ChangeEvent<HTMLTextAreaElement>
-    ) => void;
-}
 
 const FormField = ({ id, label, name, placeholder, required, onChange, error, helpText, textarea } : FormFieldProps) => {
     return (
