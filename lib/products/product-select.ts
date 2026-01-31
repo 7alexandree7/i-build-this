@@ -36,7 +36,6 @@ export async function getAllProducts() {
 
 export async function getRecentlyLaunchedProducts() {
     await connection();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     const productsData = await getAllApprovedProducts();
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
