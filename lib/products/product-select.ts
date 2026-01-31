@@ -15,7 +15,6 @@ export async function getFeaturedProducts() {
 };
 
 export async function getAllApprovedProducts() {
-    "use cache";
     const productsData = await db
         .select()
         .from(products)
