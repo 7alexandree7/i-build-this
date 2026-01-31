@@ -19,12 +19,14 @@ export const addProductAction = async (prevState: FormState, formData: FormData)
             return {
                 success: false,
                 message: "User not authenticated.",
+                errors: undefined
             }
         }
         if (!orgId) {
             return {
                 success: false,
                 message: "Organization not found.",
+                errors: undefined
             }
         }
         //data
@@ -59,6 +61,7 @@ export const addProductAction = async (prevState: FormState, formData: FormData)
         return {
             success: true,
             message: "Product submitted successfully. It is now pending review.",
+            errors: undefined
         }
 
     } catch (error) {

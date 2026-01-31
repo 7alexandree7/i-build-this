@@ -21,7 +21,11 @@ const initialState: FormState = {
 const ProductSubmitForm = () => {
 
     const [state, formAction, isPending] = useActionState(addProductAction as any, initialState)
-    const { success, errors = {}, message } = state as ActionState;
+    const { success, errors, message } = state as ActionState;
+    const getFieldErrors = (fieldName: string): string[] => {
+        if(!errors) return [];
+        return (errors as Record<string, string[]>)[fieldName] ?? [];
+    }
 
     return (
         <form className="space-y-6" action={formAction}>
@@ -45,7 +49,7 @@ const ProductSubmitForm = () => {
                 name="name"
                 placeholder="Product name"
                 required={true}
-                error={errors?.name ?? []}
+                error={getFieldErrors("name")}
                 onChange={() => { }}
             />
             <FormField
@@ -54,7 +58,7 @@ const ProductSubmitForm = () => {
                 name="slug"
                 placeholder="my-awesome-product"
                 required={true}
-                error={errors?.slug ?? []}
+                error={getFieldErrors("slug")}
                 helpText="URL-friendly version of your product name"
                 onChange={() => { }}
             />
@@ -64,7 +68,7 @@ const ProductSubmitForm = () => {
                 name="tagline"
                 placeholder="A brief, catchy description"
                 required={true}
-                error={errors?.tagline ?? []}
+                error={getFieldErrors("tagline")}
                 onChange={() => { }}
             />
             <FormField
@@ -73,7 +77,7 @@ const ProductSubmitForm = () => {
                 name="description"
                 placeholder="A detailed description of your product"
                 required={false}
-                error={errors?.description ?? []}
+                error={getFieldErrors("description")}
                 onChange={() => { }}
                 textarea={true}
             />
@@ -83,7 +87,7 @@ const ProductSubmitForm = () => {
                 name="websiteUrl"
                 placeholder="https://my-awesome-product.com"
                 required={true}
-                error={errors?.websiteUrl ?? []}
+                error={getFieldErrors("websiteUrl")}
                 helpText="Enter your product's official website URL"
                 onChange={() => { }}
             />
@@ -93,7 +97,7 @@ const ProductSubmitForm = () => {
                 name="tags"
                 placeholder="Ai, Productivity, SaaS"
                 required={false}
-                error={errors?.tags ?? []}
+                error={getFieldErrors("tags")}
                 helpText="Comma-separated tags to categorize your product"
                 onChange={() => { }}
             />
