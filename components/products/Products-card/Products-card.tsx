@@ -1,17 +1,13 @@
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { products } from "@/db/schema"
-import { InferSelectModel } from "drizzle-orm"
-import { ChevronDownIcon, ChevronUpIcon, StarIcon } from "lucide-react"
 import Link from "next/link"
-
-
-type product = InferSelectModel<typeof products>
+import VottingButton from "../voting-button/votting-button"
+import { product } from "@/types"
+import { StarIcon } from "lucide-react"
 
 const ProductsCard = ({ product }: { product:product }) => {
     return (
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/products/${product.slug}`}>
             <Card className="group card-hover hover:bg-primary-foreground/10 border-solid border-gray-400 min-h-55">
                 <CardHeader>
                     <div className="flex items-start gap-4">
@@ -25,15 +21,7 @@ const ProductsCard = ({ product }: { product:product }) => {
                             <CardDescription>{product.description}</CardDescription>
                         </div>
 
-                        <div className="flex flex-col items-center gap-1 shrink-0">
-                            <Button variant={"ghost"} size={"icon-sm"} className="w-8 h-8 text-primary hover:bg-primary/20 cursor-pointer">
-                            <ChevronUpIcon className="size-4" />
-                            </Button>
-                            <span className="text-sm font-semibold transition-colors text-foreground">{product.voteCount}</span>
-                            <Button variant={"ghost"} size={"icon-sm"} className="w-8 h-8 text-primary hover:text-destructive cursor-pointer">
-                                <ChevronDownIcon className="size-4" />
-                            </Button>
-                        </div>
+                        <VottingButton productId={product.id} productVoteCount={product.voteCount} />
 
                     </div>
                 </CardHeader>

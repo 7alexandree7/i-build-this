@@ -3,9 +3,12 @@
 import FormField from "@/components/forms/form-field/form-field"
 import { Button } from "@/components/ui/button"
 import { addProductAction } from "@/lib/products/product-action"
+import { cn } from "@/lib/utils"
 import { FormState, ProductErrors } from "@/types"
 import { LoaderIcon, SparkleIcon } from "lucide-react"
 import { useActionState } from "react"
+
+type ActionState = { success: boolean; errors?: ProductErrors; message: string };
 
 
 const initialState: FormState = {
@@ -17,11 +20,25 @@ const initialState: FormState = {
 
 const ProductSubmitForm = () => {
 
-    const [state, formAction, isPending] = useActionState(addProductAction, initialState)
-    const { success, errors = {}, message } = state as { success: boolean; errors?: ProductErrors; message: string };
+    const [state, formAction, isPending] = useActionState(addProductAction as any, initialState)
+    const { success, errors = {}, message } = state as ActionState;
 
     return (
         <form className="space-y-6" action={formAction}>
+
+            {message && (
+                <div className={cn("p-4 rounded-lg border",
+                    success
+                        ? "bg-primary/10 border-primary text-primary"
+                        : "bg-destructive/10 border-destructive text-destructive"
+                )}
+                role="alert"
+                aria-live="polite"
+                >
+                    {message}
+                </div>
+            )}
+
             <FormField
                 id="name"
                 label="Product Name"

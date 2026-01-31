@@ -1,3 +1,6 @@
+import { InferSelectModel } from "drizzle-orm"
+import { products } from "@/db/schema"
+
 export type FormState = {
     success: boolean;
     errors?: Record<string, string[]>;
@@ -8,7 +11,7 @@ export interface ProductErrors {
     name?: string[]
     slug?: string[]
     tagline?: string[]
-    description?: string[]
+    description?: string[] | null
     websiteUrl?: string[]
     tags?: string[]
 }
@@ -29,3 +32,6 @@ export interface FormFieldProps {
             | React.ChangeEvent<HTMLTextAreaElement>
     ) => void;
 }
+
+
+export type product = InferSelectModel<typeof products>

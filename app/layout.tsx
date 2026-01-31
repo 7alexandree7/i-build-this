@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="pt-br">
-        <body
+        <body suppressHydrationWarning={true}
           className={`${outfit.className}antialiased`}
         >
           <Header />
